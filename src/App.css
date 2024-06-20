@@ -5,21 +5,39 @@
   text-align: center;
 }
 
+body {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.81) 25%,
+    rgba(0, 0, 0, 0.91) 50%,
+    rgba(0, 0, 0, 0.77) 75%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+}
+
 form > * {
   padding: 1em;
 }
 h2 {
   padding-bottom: 0.6em;
+  color: hotpink;
+  text-shadow: 0.1em 0.3em 0.3em yellowgreen;
 }
 button {
-  background-color: hotpink !important;
-  border: 1px solid yellowgreen !important;
-  color: white !important;
+  background-color: rgba(0, 0, 0, 0.466) !important;
+  border: 2px solid hotpink !important;
+  color: yellowgreen !important;
   margin-top: 1em;
+  box-shadow: 0.3em 1em 4em yellowgreen;
 }
 
 .message {
   color: yellowgreen;
+}
+.pink {
+  color: hotpink;
 }
 label {
   display: flex;
@@ -29,4 +47,5 @@ label {
 input {
   margin-left: 1em;
   border: hotpink 1px solid !important;
+  box-shadow: 0.3em 1em 2.5em yellowgreen;
 }

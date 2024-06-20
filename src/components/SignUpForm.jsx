@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-export default function SignUpForm() {
+export default function SignUpForm({ setToken, token }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [sucM, setSucM] = useState(null);
+
+  const [errM, setErrM] = useState("");
+  const [suxM, setSuxM] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -23,34 +24,36 @@ export default function SignUpForm() {
         }
       );
       const result = await response.json();
-      result.success && setSucM(result.message);
+      if (result.success) {
+        setSuxM(result.message);
+        setToken(result.token);
+      }
     } catch (err) {
-      setError(err.message);
+      setErrM(err.message);
     }
   }
 
   return (
     <>
       <h2> Sign Up !</h2>
+      {suxM && <p className="message">{suxM}</p>}
+      {errM && <p className="message">{errM}</p>}
 
-      {error && <p className="message">{error}</p>}
-      {sucM && <p className="message">{sucM}</p>}
       {/* <p> {error ? error : "bien"} </p> */}
-
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>
-            Username:
             <input
               className="form-control"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
+              required
             />{" "}
           </label>
         </div>
         <div className="form-group">
           <label>
-            Password:{" "}
             <input
               type="password"
               id="password"
@@ -59,6 +62,8 @@ export default function SignUpForm() {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
+              placeholder="Password"
+              required
             />
           </label>
         </div>
